@@ -1,0 +1,76 @@
+﻿@model DayPlanner.Models.LoginModel
+
+@{
+    ViewBag.Title = "Login";
+}
+@Styles.Render("~/Content/default.css")
+@Scripts.Render("~/bundles/jquery")
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <header>
+        <div class="start">
+            DailyPlanner
+        </div>
+
+        <div class="sign">
+            <div id="btn-sign-up">
+                Sign Up
+            </div>
+            <div id="btn-sign-in">
+                Sign In
+            </div>
+
+        </div>
+    </header>
+
+    <div class="fake-header"> </div>
+
+    <div class="content">
+        <div class="register-welcome">
+            Welcome,
+            <br />
+            if you have an account, login to get started.
+        </div>
+
+        @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            @Html.ValidationSummary()
+            <input type="hidden" name="returnUrl" value="@ViewBag.returnUrl" />
+
+            <div class="email-name">
+                Email
+            </div>
+                <div id="email-field">
+                    @Html.EditorFor(model => model.Email)
+                </div>
+
+                <div class="password-name">
+                    Password
+                </div>
+                <div id="password-field">
+                    @Html.EditorFor(model => model.Password)
+                </div>
+
+                <button type="submit" class="btn-login btn ">Login</button>
+        }
+    </div>
+    <script>
+        $(".btn").hover(function () {
+            $(this).css({ "background-color": "#4D4D4D" });
+            $(this).css({ "color": "#efefef" });
+        },
+            function () {
+                $(this).css({ "background-color": "#efefef" });
+                $(this).css({ "color": "#4D4D4D" });
+            });
+    </script>
+</body>
+</html>
+

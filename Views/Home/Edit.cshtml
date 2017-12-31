@@ -1,0 +1,75 @@
+﻿@model DayPlanner.Models.TaskDataModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+@Styles.Render("~/Content/default.css")
+@Scripts.Render("~/bundles/jquery")
+
+<body>
+    <header>
+        <div class="start">
+            DailyPlanner
+        </div>
+
+
+        @{
+            if (@Html.Action("GetUsername", "Account").ToString().Length <= 1)
+            {
+                <div class="sign">
+                    <div id="btn-sign-up">
+                        Sign Up
+                    </div>
+                    <div id="btn-sign-in">
+                        Sign In
+                    </div>
+                </div>
+            }
+            else
+            {
+                <span id="btn-logout"> Logout </span>
+                <div class="btn-profile">
+                    @Html.Action("GetUsername", "Account")
+                </div>
+            }
+        }
+    </header>
+
+    <div class="fake-header"></div>
+
+    <div class="content">
+        @using (Html.BeginForm("EditPlans", "Home", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            @Html.ValidationSummary(false)
+
+            <div class="password-name">
+                Task
+            </div>
+            <div id="password-field">
+                @Html.EditorFor(model => model.Task)
+            </div>
+
+            <div class="password-confirm-name">
+                Date
+            </div>
+            <div id="password-confirm-field">
+                @Html.EditorFor(model => model.Date)
+            </div>
+
+            <input class="reg-btn btn" type="submit" value="Add Task" />
+        }
+    </div>
+    <script>
+        $(".btn").hover(function () {
+            $(this).css({ "background-color": "#4D4D4D" });
+            $(this).css({ "color": "#efefef" });
+        },
+            function () {
+                $(this).css({ "background-color": "#efefef" });
+                $(this).css({ "color": "#4D4D4D" });
+            });
+    </script>
+</body>

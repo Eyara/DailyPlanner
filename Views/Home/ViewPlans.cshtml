@@ -1,0 +1,134 @@
+﻿@model IEnumerable<DayPlanner.Models.TaskDataModel>
+
+@{
+    ViewBag.Title = "View";
+}
+
+@Styles.Render("~/Content/default.css")
+@Scripts.Render("~/bundles/jquery")
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <header>
+        <div class="start">
+            DailyPlanner
+        </div>
+
+
+        @{
+            if (@Html.Action("GetUsername", "Account").ToString().Length <= 1)
+            {
+                <div class="sign">
+                    <div id="btn-sign-up">
+                        Sign Up
+                    </div>
+                    <div id="btn-sign-in">
+                        Sign In
+                    </div>
+                </div>
+            }
+            else
+            {
+                <span id="btn-logout"> Logout </span>
+                <div class="btn-profile">
+                    @Html.Action("GetUsername", "Account")
+                </div>
+            }
+        }
+    </header>
+
+    <div class="fake-header"> </div>
+
+    
+    <div class="planner-table">
+        <div class="planner-header">
+            Today's Tasks
+        </div>
+        <div class="week">
+            <div class="day">
+                @DateTime.Now.Day
+             </div>
+             <div class="day">
+                @DateTime.Now.Month
+             </div>
+             <div id = "week-day" >
+                @DateTime.Now.DayOfWeek
+             </div>
+        </div>
+        <table>
+            @foreach (var task in Model)
+            {
+                if (task.Date.Day == DateTime.Now.Day)
+                {
+                    <tr>
+                        <td class="planner-checkbox">
+                            <div class="checkmark"> &#10004; </div>
+                        </td>
+                        <td>@task.Task</td>
+                    </tr>
+                }
+            }
+        </table>
+        <div class="btn planner-submit"> Save Changes</div>
+        <div class="planner-footer"> </div>
+    </div>
+
+    <script>
+        $(".planner-checkbox").click(function () {
+            $(this).find($(".checkmark")).toggle();
+            if ($(this).parent().find("td:nth-child(2)").hasClass(".check")) {
+                $(this).parent().find("td:nth-child(2)").css({ "text-decoration": "none" });
+                $(this).parent().find("td:nth-child(2)").removeClass(".check");
+            }
+            else {
+                    $(this).parent().find("td:nth-child(2)").css({ "text-decoration": "line-through" });
+                    $(this).parent().find("td:nth-child(2)").addClass(".check");
+            }
+        });
+    </script>
+    <script>
+        $(".planner-submit").click(function () {
+            var finishedTasks = [];
+            $("td:nth-child(2)").each(function () {
+                if ($(this).hasClass(".check")) {
+                    finishedTasks.push($(this).html());
+                }
+            });
+
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("DeleteTask", "Home")',
+                data: { tasks: finishedTasks },
+                dataType: "json",
+                success: function (response) {  
+                    $("td:nth-child(2)").each(function () {
+                        if ($(this).hasClass(".check")) {
+                            $(this).parent().find(".planner-checkbox").slideToggle("slow");
+                            $(this).slideToggle("slow");
+                        }
+                    });
+                },
+                error: function () {
+                    console.log ('error :(');
+                }
+            });
+        });
+    </script>
+    <script>
+        $(".btn").hover(function () {
+            $(this).css({ "background-color": "#4D4D4D" });
+            $(this).css({ "color": "#efefef" });
+        },
+            function () {
+                $(this).css({ "background-color": "#efefef" });
+                $(this).css({ "color": "#4D4D4D" });
+            });
+    </script>
+</body>
+</html>

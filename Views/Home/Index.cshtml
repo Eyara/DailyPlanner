@@ -1,0 +1,158 @@
+﻿@model DayPlanner.Models.LoginModel
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+@Styles.Render("~/Content/default.css")
+@Scripts.Render("~/bundles/jquery")
+
+<body>
+
+    <header>
+        <div class="start">
+            DailyPlanner
+        </div>
+
+
+            @{
+                if (@Html.Action("GetUsername", "Account").ToString().Length <= 1)
+                {
+                    <div class="sign">
+                        @Html.ActionLink("Sign Up", "Register", "Home", null, new { @class = "btn-header", @id = "btn-sign-up" })
+                        @Html.ActionLink("Sign In", "Login", "Home", null, new { @class = "btn-header", @id = "btn-sign-in" })
+                    </div>
+                }
+                else
+                {
+                    @Html.ActionLink("Logout", "Logout", "Account", null, new { @class = "btn-header", @id = "btn-logout" })
+                    <div class="btn-profile">
+                        @Html.Action("GetUsername", "Account")
+                    </div>
+                }
+            }
+    </header>
+    <div class="fake-header"> </div>
+    <div class="content">
+
+        @*<div class="intro">
+            ORGANIZE YOUR LIFE
+        </div>*@
+
+        <div class="intro-page">
+            Make your life better with us
+
+
+        @{
+            if (@Html.Action("GetUsername", "Account").ToString().Length > 1)
+            {
+                <div class="btn-index">
+                    <div class="view">
+                        <div class="btn">
+                            @Html.ActionLink("View your plans", "ViewPlans", "Home", null, new { @id = "btn-view" })
+                        </div>
+                    </div>
+
+                    <div class="edit">
+                        <div class="btn">
+                            @Html.ActionLink("Edit your plans", "Edit", "Home", null, new { @id = "btn-edit" })
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="join">
+                    <div class="btn btn-large">
+                        @Html.ActionLink("Join", "Register", "Home", null, new { @id = "btn-join" })
+                    </div>
+                </div>
+            }
+         }
+        </div>
+
+        <div class="animation-bar">
+            <div class="first-anim">
+            </div>
+            <div class="anim-text">
+                <div class="anim-text-sec">
+                    Speed and
+                 </div>
+                <div class="anim-text-sec">
+                    Convenience
+                </div>
+             </div>
+            <div class="second-anim">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(".btn").hover(function () {
+            $(this).css({ "background-color": "#4D4D4D" });
+            $(this).find("#btn-edit").css({ "color": "#efefef" });
+            $(this).find("#btn-view").css({ "color": "#efefef" });
+            $(this).find("#btn-join").css({ "color": "#efefef" });
+        },
+        function () {
+            $(this).css({ "background-color": "#efefef" });
+            $(this).find("#btn-edit").css({ "color": "#4D4D4D" });
+            $(this).find("#btn-view").css({ "color": "#4D4D4D" });
+            $(this).find("#btn-join").css({ "color": "#4D4D4D   " });
+        });
+    </script>
+    <script>
+        $(".btn-header").hover(function () {
+            $(this).css({ "border-bottom": "1px #4d4d4d solid" });
+            $(this).css({ "color": "#808080" });
+        },
+        function ()
+        {
+            $(this).css({ "border-bottom": "none" });
+            $(this).css({ "color": "#4d4d4d" });
+        });
+    </script>
+    <script>
+
+        $(document).ready(function () {
+            $(".anim-text").hide("fast");
+            $(".second-anim").css({ "margin-top": "230" });
+        });
+
+        var interval = setInterval(function () {
+            movingBlock();
+        }, 5000);
+
+        setInterval(function () {
+            $(".first-anim").addClass("arrow-right");
+            $(".second-anim").addClass("arrow-left");
+            $(".anim-text").show("slow");
+        }, 2500);
+        setInterval(function () {
+            $(".first-anim").removeClass("arrow-right");
+            $(".second-anim").removeClass("arrow-left");
+            $(".anim-text").hide("slow");
+        }, 5001);
+
+        function movingBlock() {
+            if ($(".first-anim").hasClass(".anim-on")) {
+                $(".first-anim").animate({
+                    marginTop: 0
+                }, 2500);
+                $(".first-anim").removeClass(".anim-on");
+                $(".second-anim").animate({
+                    marginTop: 230
+                }, 2500);
+            }
+            else {
+                $(".first-anim").animate({
+                    marginTop: 230
+                }, 2500);
+                $(".second-anim").animate({
+                    marginTop: 0
+                }, 2500);
+                $(".first-anim").addClass(".anim-on");
+            }
+        } 
+    </script>
+</body>

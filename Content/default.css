@@ -1,0 +1,380 @@
+﻿html, body {
+    height: 100%;
+}
+
+body {
+    background-color: #efefef;
+    position: relative;
+    padding-bottom: 30px;
+    box-sizing: border-box;
+}
+
+header, body {
+    padding: 0;
+    margin: 0;
+}
+
+header {
+    top: 0;
+    right: 0;
+    width: 100%;
+    position: relative;
+    line-height: 70px;
+    font-size: 18px;
+    color: #515151;
+}
+
+.btn-header {
+    height: 60px;
+}
+
+.start {
+    padding-left: 5%;
+    float: left;
+    width: 45%;
+    font-size: 30px;
+}
+
+#btn-sign-up, #btn-sign-in {
+    float: right;
+    margin-right: 5%;
+    text-decoration: none;
+    color: #4D4D4D;
+}
+
+.btn-profile {
+    float: right;
+    margin-right: 5%;
+}
+
+.fake-header {
+    position: relative;
+    height: 70px;
+    z-index: -100000;
+}
+
+.content {
+    position: absolute;
+    color: #515151;
+    height: 100%;
+    width: 100%;
+    margin-bottom: -30px;
+}
+
+.content:after {
+    content: '';
+    display: block;
+
+}
+
+.content:after, .footer {
+    height: 30px;
+}
+.intro {
+    clear: both;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 36px;
+    font-family: Georgia;
+    color: #4D4D4D;
+    text-align: center;
+}
+
+.intro-page {
+    float: left;
+    font-size: 72px;
+    font-family: Georgia;
+    color: #4D4D4D;
+    margin-left: 10%;
+    margin-top: 4%;
+    margin-bottom: 4%;
+    width: 50%;
+}
+
+.btn-index {
+    clear: both;
+    margin-left: 5%;
+    margin-top: 30px;
+}
+
+.view {
+    float: left;
+}
+
+.edit {
+    float: right;
+    margin-right: 5%;
+}
+
+.btn {
+    width: 150px;
+    display: block;
+   /* background-color: #BAD3CE; */
+    border: 1px black solid;
+    text-align: center;
+    height: 30px;
+    padding: 30px 30px 25px 30px;
+    font-weight: bold;
+}
+
+.btn-large {
+    width: 300px;
+}
+
+.join {
+    margin-left: 20%;
+    margin-top: 40px;
+    clear: both;
+}
+
+#btn-join {
+    font-size: 21px;
+    vertical-align: middle;
+    text-decoration: none;
+    color: #4D4D4D;
+}
+
+#btn-edit {
+    font-size: 16px;
+    vertical-align: middle;
+    text-decoration: none;
+    color: #4D4D4D;
+}
+
+#btn-view {
+    font-size: 16px;
+    vertical-align: middle;
+    text-decoration: none;
+    color: #4D4D4D;
+}
+
+.footer {
+    position: relative;
+    width: 100%;
+    text-align: center;
+    bottom: 0;
+    color: #4D4D4D;
+}
+
+.register-welcome {
+    font-family: Georgia;
+    font-size: 21px;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.email-name {
+    clear: both;
+    margin-left: 34%;
+    float: left;
+    margin-bottom: 40px;
+}
+
+#email-field {
+    float: right;
+    margin-right: 41%;
+}
+
+.password-name {
+    clear: both;
+    float: left;
+    margin-left: 34%;
+    margin-bottom: 40px;
+}
+
+#password-field {
+    float: right;
+    margin-right: 41%;
+}
+
+.password-confirm-name {
+    clear: both;
+    float: left;
+    margin-left: 34%;
+    margin-bottom: 40px;
+}
+
+#password-confirm-field {
+    float: right;
+    margin-right: 41%;
+}
+
+.reg-btn, .btn-login {
+    clear: both;
+    float: left;
+    margin-left: 35%;
+    font-size: 18px;
+    color: #4D4D4D;
+    background-color: #efefef;
+    width: 30%;
+    height: 15%;
+}
+
+input {
+    border-bottom: 2px dotted #999;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    background-color: #efefef;
+    width: 150%;
+}
+
+table {
+    float: left;
+    position: relative;
+    width: 80%;
+    text-align: left;
+    border-collapse: collapse;
+    margin-left: 30px;
+    font-size: 16px;
+}
+
+th, td {
+    border-bottom: 1px black solid;
+}
+
+th, td {
+    padding: 15px;
+}
+
+.week {
+    position: relative;
+    margin-right: auto;
+    width: 8em;
+    float: left;
+    color: #fafafa;
+    background-color: #404040;
+    text-align: center;
+}
+
+.day {
+    font-size: 50px;
+    margin-bottom: 10px;
+}
+
+#week-day {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    writing-mode: vertical-rl;
+    -moz-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    font-size: 100px;
+}
+
+.planner-header {
+    margin-left: 45%;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 32px;
+
+}
+
+.planner-checkbox {
+    float: left;
+    height: 15px;
+    width: 30px;
+    margin-bottom: 5px;
+    border: 1px black solid;
+    border-radius: 3px;
+}
+
+.checkmark {
+    display: none;
+    font-size: 36px;
+    line-height: 20px;
+}
+
+td:nth-child(even) {
+    float: left;
+    margin-left: 50px;
+    width: 80%;
+}
+
+
+
+.planner-submit {
+    float: left;
+    margin-top: 10px;
+    margin-left: 2%;
+}
+
+.planner-footer {
+    clear: both;
+}
+
+#btn-logout {
+    float: right;
+    margin-right: 10%;
+    text-decoration: none;
+    color: #4D4D4D;
+}
+
+.animation-bar {
+    float: left;
+    width: 30%;
+    margin-top: 5%;
+    margin-left: 10%;
+    font-size: 21px;
+    font-style: italic;
+    font-weight:bold;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus input:-webkit-autofill,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0px 1000px #000 inset;
+    transition: background-color 5000s ease-in-out 0s;
+    box-shadow: inset 0 0 0px 9999px #efefef;
+}
+
+.first-anim {
+    float: left;
+    border: 15px solid #4d4d4d;
+}
+
+.second-anim {
+    float: left;
+    border: 15px solid #4d4d4d;
+}
+
+.arrow-right {
+    background-color: transparent;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-left: 15px solid #4d4d4d;
+    border-right: 15px solid transparent;
+}
+
+.arrow-left {
+    background-color: transparent;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-left: 15px solid transparent;
+    border-right: 15px solid #4d4d4d;
+}
+
+.anim-text {
+    float: left;
+    margin-left: 20px;
+    margin-right: 20px;
+    display: block;
+}
+
+.anim-text-sec {
+    margin-bottom: 205px;
+    clear: both;
+}
+
+.blur-background {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    filter: blur(5px);
+    z-index: -100000000;
+    font-size: 50px;
+}

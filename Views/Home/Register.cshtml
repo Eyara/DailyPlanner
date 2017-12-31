@@ -1,0 +1,93 @@
+﻿@model DayPlanner.Models.RegisterModel
+
+@{
+    ViewBag.Title = "Register";
+}
+
+@Styles.Render("~/Content/default.css")
+@Scripts.Render("~/bundles/jquery")
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <header>
+        <div class="start">
+            DailyPlanner
+        </div>
+
+
+        @{
+            if (@Html.Action("GetUsername", "Account").ToString().Length <= 1)
+            {
+                <div class="sign">
+                    <div id="btn-sign-up">
+                        Sign Up
+                    </div>
+                    <div id="btn-sign-in">
+                        Sign In
+                    </div>
+                </div>
+            }
+            else
+            {
+                <span id="btn-logout"> Logout </span>
+                <div class="btn-profile">
+                    @Html.Action("GetUsername", "Account")
+                </div>
+            }
+        }
+    </header>
+
+    <div class="fake-header"> </div>
+    <div class="register-welcome">
+        Welcome,
+        <br />
+        create a free account to get started.
+    </div>
+
+    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "register" }))
+    {
+            @Html.AntiForgeryToken()
+
+            @Html.ValidationSummary(false)
+
+            <div class="email-name">
+                Email
+            </div>
+            <div id="email-field">
+                @Html.EditorFor(model => model.Email)
+            </div>
+
+            <div class="password-name">
+                Password
+            </div>
+            <div id="password-field">
+                @Html.EditorFor(model => model.Password)
+            </div>
+
+            <div class="password-confirm-name">
+                Confirm Password
+            </div>
+            <div id="password-confirm-field">
+                @Html.EditorFor(model => model.PasswordConfirm)
+            </div>
+
+            <input class ="reg-btn btn" type="submit" value="Register" />
+    }
+    <script>
+        $(".btn").hover(function () {
+            $(this).css({ "background-color": "#4D4D4D" });
+            $(this).css({ "color": "#efefef" });
+        },
+            function () {
+                $(this).css({ "background-color": "#efefef" });
+                $(this).css({ "color": "#4D4D4D" });
+            });
+    </script>
+</body>
+</html>
